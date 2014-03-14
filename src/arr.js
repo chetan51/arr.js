@@ -157,7 +157,44 @@ Arr.prod = function(array) {
  **/
 Arr.neighbors = function(index, radius, dimensions, wrap) {
     var point = Arr.indexToPoint(index, dimensions),
-            neighbors = [];
+            neighbors = [[]];
 
-    return neighbors;
+    var mod = function(m, n) {
+            return ((m % n) + n) % n;
+        },
+        expand = function(pos, dimensionLength) {
+        return function(neighbor) {
+            var expansions = [],
+                maxRadius = wrap ? Math.ceil((dimensionLength - 1) / 2) : dimensionLength - 1,
+                effectiveRadius = Math.min(radius, maxRadius);
+
+            for (var j = pos - effectiveRadius; j <= pos + effectiveRadius; j++) {
+                var k = j;
+
+                if (j < 0 || j >= dimensionLength) {
+                    if (wrap) k = mod(j, dimensionLength);
+                    else continue;
+                }
+
+                var expansion = _.clone(neighbor);
+                expansion.unshift(k);
+                expansions.push(expansion);
+            }
+
+            return expansions;
+        };
+    };
+
+    for (var i = dimensions.length - 1; i >= 0; i--) {
+        neighbors = _.map(neighbors, expand(point[i],  dimensions[i]));
+        neighbors = _.flatten(neighbors, true);
+    }
+
+    var pointToIndex = function(dimensions) {
+        return function(point) {
+            return Arr.pointToIndex(point, dimensions);
+        };
+    };
+
+    return _.uniq(_.map(neighbors, pointToIndex(dimensions)));
 };
