@@ -72,7 +72,7 @@ describe('Arr.js', function() {
 
     });
 
-    describe('group', function() {
+    describe('reduceDimensions', function() {
 
         it('should reduce 3 dimensions to 2 dimensions', function() {
             var dimensions = [4, 3, 2],
