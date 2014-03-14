@@ -266,4 +266,19 @@ describe('Arr.js', function() {
 
     });
 
+    describe('areEqualSets', function() {
+
+        it('should return true if sets are equal', function() {
+            Arr.areEqualSets([1, 2, 3], [1, 2, 3]).should.equal(true);
+            Arr.areEqualSets([1, 2, 3], [2, 1, 3]).should.equal(true);
+        });
+
+        it('should return false if sets are not equal', function() {
+            Arr.areEqualSets([1, 2, 3], [2]).should.equal(false);
+            Arr.areEqualSets([1, 2, 3], [4]).should.equal(false);
+            Arr.areEqualSets([1, 2, 3], [2, 3, 4]).should.equal(false);
+        });
+
+    });
+
 });
