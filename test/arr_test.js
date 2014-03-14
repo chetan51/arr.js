@@ -104,4 +104,66 @@ describe('Arr.js', function() {
 
     });
 
+    describe('pointToIndex', function() {
+
+        it('should convert 2-D point to index', function() {
+            var dimensions = [10, 20];
+
+            Arr.pointToIndex([0, 0], dimensions).should.equal(0);
+            Arr.pointToIndex([3, 4], dimensions).should.equal(64);
+            Arr.pointToIndex([9, 19], dimensions).should.equal(199);
+        });
+
+        it('should convert 3-D point to index', function() {
+            var dimensions = [10, 20, 30];
+
+            Arr.pointToIndex([0, 0, 0], dimensions).should.equal(0);
+            Arr.pointToIndex([3, 4, 5], dimensions).should.equal(1925);
+            Arr.pointToIndex([9, 19, 29], dimensions).should.equal(5999);
+        });
+
+    });
+
+    describe('indexToPoint', function() {
+
+        it('should convert index to 2-D point', function() {
+            var dimensions = [10, 20];
+
+            Arr.indexToPoint(0, dimensions).should.eql([0, 0]);
+            Arr.indexToPoint(64, dimensions).should.eql([3, 4]);
+            Arr.indexToPoint(199, dimensions).should.eql([9, 19]);
+        });
+
+        it('should convert 3-D point to index', function() {
+            var dimensions = [10, 20, 30];
+
+            Arr.indexToPoint(0, dimensions).should.eql([0, 0, 0]);
+            Arr.indexToPoint(1925, dimensions).should.eql([3, 4, 5]);
+            Arr.indexToPoint(5999, dimensions).should.eql([9, 19, 29]);
+        });
+
+    });
+
+    describe('prod', function() {
+
+        it('should return product of 3-element array', function() {
+            var array = [3, 4, 5];
+
+            Arr.prod(array).should.equal(60);
+        });
+
+        it('should return product of 1-element array', function() {
+            var array = [10];
+
+            Arr.prod(array).should.equal(10);
+        });
+
+        it('should return 0 for empty array', function() {
+            var array = [];
+
+            Arr.prod(array).should.equal(0);
+        });
+
+    });
+
 });

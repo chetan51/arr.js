@@ -90,3 +90,58 @@ Arr.reduceDimensions = function(dimensions, numDimensions) {
 
   return result;
 };
+
+/**
+ * Converts a point in an N-dimensional space to a 1-D index into the space.
+ *
+ * @param {Array} point The point in the N-dimensional space. This array should have length N.
+ * @param {Array} dimensions The dimensions of the space.
+ * @returns {Number} Returns the index into the space.
+ **/
+Arr.pointToIndex = function(point, dimensions) {
+  var multiplier = 1,
+      index = 0;
+
+  for (var i = dimensions.length - 1; i >= 0; i--) {
+    index += multiplier * point[i];
+    multiplier *= dimensions[i];
+  }
+
+  return index;
+};
+
+/**
+ * Converts an index into an N-dimensional space to the respective point in the space.
+ *
+ * @param {Number} index The index into the N-dimensional space.
+ * @param {Array} dimensions The dimensions of the space.
+ * @returns {Array} Returns the point in the space represented by the index.
+ **/
+Arr.indexToPoint = function(index, dimensions) {
+  var multiplier = Arr.prod(dimensions),
+      point = [];
+
+  for (var i = 0; i < dimensions.length; i++) {
+    multiplier /= dimensions[i];
+
+    var factor = Math.floor(index / multiplier);
+    point.push(factor);
+    index -= factor * multiplier;
+  }
+
+  return point;
+};
+
+/**
+ * Return the product of all numbers in an array.
+ *
+ * @param {Array} array An array filled with numbers
+ * @returns {Number} Returns the product of all numbers in the array.
+ **/
+Arr.prod = function(array) {
+  if (!array.length) return 0;
+
+  return _.reduce(array, function(p, n) {
+    return p * n;
+  });
+};
