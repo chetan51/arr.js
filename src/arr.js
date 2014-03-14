@@ -145,3 +145,19 @@ Arr.prod = function(array) {
     return p * n;
   });
 };
+
+/**
+ * Return the neighboring indices of an index in an N-dimensional space.
+ *
+ * @param {Number} index Index of whose neighbors to return.
+ * @param {Number} radius Number of neighbors on each side of index to return.
+ * @param {Array} dimensions Dimensions of the space.
+ * @param {Boolean} wrap Enable wrapping around edges of the space.
+ * @returns {Array} Returns the neighboring indices of the index in the space.
+ **/
+Arr.neighbors = function(index, radius, dimensions, wrap) {
+  var point = Arr.indexToPoint(index, dimensions),
+      neighbors = [];
+
+  return neighbors;
+};

@@ -166,4 +166,45 @@ describe('Arr.js', function() {
 
     });
 
+    describe('neighbors', function() {
+
+        describe('for a 1-D array', function() {
+            var dimensions = [10];
+
+            it('should return neighbors with radius 2 of index 0 without wrapping', function() {
+                Arr.neighbors(3, 2, dimensions, false).should.eql([0, 1, 2]);
+            });
+
+            it('should return neighbors with radius 2 of index 3 without wrapping', function() {
+                Arr.neighbors(3, 2, dimensions, false).should.eql([1, 2, 3, 4, 5]);
+            });
+
+            it('should return neighbors with radius 2 of index 9 without wrapping', function() {
+                Arr.neighbors(3, 2, dimensions, false).should.eql([7, 8, 9]);
+            });
+
+            it('should return neighbors with radius 100 of index 3 without wrapping', function() {
+                Arr.neighbors(3, 100, dimensions, false).should.eql([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]);
+            });
+
+            it('should return neighbors with radius 2 of index 0 with wrapping', function() {
+                Arr.neighbors(3, 2, dimensions, true).should.eql([8, 9, 0, 1, 2]);
+            });
+
+            it('should return neighbors with radius 2 of index 3 with wrapping', function() {
+                Arr.neighbors(3, 2, dimensions, true).should.eql([1, 2, 3, 4, 5]);
+            });
+
+            it('should return neighbors with radius 2 of index 9 with wrapping', function() {
+                Arr.neighbors(3, 2, dimensions, true).should.eql([7, 8, 9, 0, 1]);
+            });
+
+            it('should return neighbors with radius 100 of index 3 with wrapping', function() {
+                Arr.neighbors(3, 100, dimensions, true).should.eql([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]);
+            });
+
+        });
+
+    });
+
 });
