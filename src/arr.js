@@ -186,7 +186,7 @@ Arr.neighbors = function(index, radius, dimensions, wrap) {
     };
 
     for (var i = dimensions.length - 1; i >= 0; i--) {
-        neighbors = _.map(neighbors, expand(point[i],  dimensions[i]));
+        neighbors = _.map(neighbors, expand(point[i], dimensions[i]));
         neighbors = _.flatten(neighbors, true);
     }
 
