@@ -72,4 +72,36 @@ describe('Arr.js', function() {
 
     });
 
+    describe('group', function() {
+
+        it('should reduce 3 dimensions to 2 dimensions', function() {
+            var dimensions = [4, 3, 2],
+                reduced = [4, 6];
+
+            Arr.reduceDimensions(dimensions, 2).should.eql(reduced);
+        });
+
+        it('should reduce 3 dimensions to 1 dimension', function() {
+            var dimensions = [4, 3, 2],
+                reduced = [24];
+
+            Arr.reduceDimensions(dimensions, 1).should.eql(reduced);
+        });
+
+        it('should reduce 4 dimensions to 2 dimensions', function() {
+            var dimensions = [10, 4, 3, 2],
+                reduced = [10, 24];
+
+            Arr.reduceDimensions(dimensions, 2).should.eql(reduced);
+        });
+
+        it('should reduce 3 dimensions to 3 dimensions', function() {
+            var dimensions = [4, 3, 2],
+                reduced = [4, 3, 2];
+
+            Arr.reduceDimensions(dimensions, 3).should.eql(reduced);
+        });
+
+    });
+
 });

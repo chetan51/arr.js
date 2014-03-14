@@ -45,3 +45,24 @@ Arr.reshape = function(array, dimensions) {
 
   return _.flatten(result, true);
 };
+
+/**
+ * Reduces given dimensions to target number of dimensions.
+ *
+ * @param {Array} dimensions The dimensions to reduce.
+ * @param {Array} numDimensions The target number of dimensions (must be less than original number of dimensions, and greater than 0).
+ * @returns {Array} Returns the reduced dimensions.
+ **/
+Arr.reduceDimensions = function(dimensions, numDimensions) {
+  var result = [];
+
+  for (var i = 0; i < numDimensions; i++) {
+    result.push(dimensions[i]);
+  }
+
+  for (var j = numDimensions; j < dimensions.length; j++) {
+    result[numDimensions - 1] *= dimensions[j];
+  }
+
+  return result;
+};
