@@ -33,7 +33,7 @@ var Arr = {};
  **/
 Arr.group = function(array, numPerGroup) {
     var result = [],
-            current = [];
+        current = [];
         
     for (var i = 0; i < array.length; i++) {
         if (i > 0 && i % numPerGroup === 0) {
@@ -60,7 +60,7 @@ Arr.group = function(array, numPerGroup) {
  **/
 Arr.reshape = function(array, dimensions) {
     var flattened = _.flatten(array),
-            result = flattened;
+        result = flattened;
 
     for (var i = dimensions.length - 1; i >= 0; i--) {
         var numPerGroup = dimensions[i];
@@ -100,7 +100,7 @@ Arr.reduceDimensions = function(dimensions, numDimensions) {
  **/
 Arr.pointToIndex = function(point, dimensions) {
     var multiplier = 1,
-            index = 0;
+        index = 0;
 
     for (var i = dimensions.length - 1; i >= 0; i--) {
         index += multiplier * point[i];
@@ -119,7 +119,7 @@ Arr.pointToIndex = function(point, dimensions) {
  **/
 Arr.indexToPoint = function(index, dimensions) {
     var multiplier = Arr.prod(dimensions),
-            point = [];
+        point = [];
 
     for (var i = 0; i < dimensions.length; i++) {
         multiplier /= dimensions[i];
@@ -157,7 +157,7 @@ Arr.prod = function(array) {
  **/
 Arr.neighbors = function(index, radius, dimensions, wrap) {
     var point = Arr.indexToPoint(index, dimensions),
-            neighbors = [[]];
+        neighbors = [[]];
 
     var mod = function(m, n) {
             return ((m % n) + n) % n;
