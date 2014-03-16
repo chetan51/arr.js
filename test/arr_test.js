@@ -144,6 +144,47 @@ describe('Arr.js', function() {
 
     });
 
+    describe('manhattanDistance', function() {
+
+        it('should work for 1-D points', function() {
+            Arr.manhattanDistance([3], [8]).should.equal(5);
+            Arr.manhattanDistance([8], [3]).should.equal(5);
+        });
+
+        it('should work for 2-D points', function() {
+            Arr.manhattanDistance([3,  4], [8, 10]).should.equal(11);
+            Arr.manhattanDistance([8, 10], [3, 4]).should.equal(11);
+        });
+
+        it('should work for 3-D points', function() {
+            Arr.manhattanDistance([3,  4,  5],  [8, 10, 12]).should.equal(18);
+            Arr.manhattanDistance([8, 10, 12],  [3,  4,  5]).should.equal(18);
+        });
+
+    });
+
+    describe('sum', function() {
+
+        it('should return sum of 3-element array', function() {
+            var array = [3, 4, 5];
+
+            Arr.sum(array).should.equal(12);
+        });
+
+        it('should return sum of 1-element array', function() {
+            var array = [10];
+
+            Arr.sum(array).should.equal(10);
+        });
+
+        it('should return 0 for empty array', function() {
+            var array = [];
+
+            Arr.sum(array).should.equal(0);
+        });
+
+    });
+
     describe('prod', function() {
 
         it('should return product of 3-element array', function() {
