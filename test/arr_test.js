@@ -207,6 +207,31 @@ describe('Arr.js', function() {
 
     });
 
+    describe('normalize', function() {
+
+        it('should normalize to 100', function() {
+            var array = [3, 4, 5];
+                normalized = [60, 80, 100];
+
+            Arr.normalize(array, 100).should.eql(normalized);
+        });
+
+        it('should normalize to 0.1', function() {
+            var array = [3, 4, 5],
+                normalized = [0.06, 0.08, 0.1];
+
+            Arr.normalize(array, 0.1).should.eql(normalized);
+        });
+
+        it('should return an empty array', function() {
+            var array = [],
+                normalized = [];
+
+            Arr.normalize(array, 1).should.eql(normalized);
+        });
+
+    });
+
     describe('neighbors', function() {
 
         describe('for a 1-D array', function() {
