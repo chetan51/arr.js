@@ -207,6 +207,50 @@ describe('Arr.js', function() {
 
     });
 
+    describe('max', function() {
+
+        it('should return max of 3-element array', function() {
+            var array = [3, 4, 5];
+
+            Arr.max(array).should.equal(5);
+        });
+
+        it('should return max of 1-element array', function() {
+            var array = [10];
+
+            Arr.max(array).should.equal(10);
+        });
+
+        it('should return -Infinity for empty array', function() {
+            var array = [];
+
+            Arr.max(array).should.equal(-Infinity);
+        });
+
+    });
+
+    describe('min', function() {
+
+        it('should return min of 3-element array', function() {
+            var array = [3, 4, 5];
+
+            Arr.min(array).should.equal(3);
+        });
+
+        it('should return min of 1-element array', function() {
+            var array = [10];
+
+            Arr.min(array).should.equal(10);
+        });
+
+        it('should return Infinity for empty array', function() {
+            var array = [];
+
+            Arr.min(array).should.equal(Infinity);
+        });
+
+    });
+
     describe('normalize', function() {
 
         it('should normalize to 100', function() {
