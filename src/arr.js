@@ -230,27 +230,27 @@ Arr.neighbors = function(index, radius, dimensions, wrap) {
             return ((m % n) + n) % n;
         },
         expand = function(pos, dimensionLength) {
-        return function(neighbor) {
-            var expansions = [],
-                maxRadius = wrap ? Math.ceil((dimensionLength - 1) / 2) : dimensionLength - 1,
-                effectiveRadius = Math.min(radius, maxRadius);
+            return function(neighbor) {
+                var expansions = [],
+                    maxRadius = wrap ? Math.ceil((dimensionLength - 1) / 2) : dimensionLength - 1,
+                    effectiveRadius = Math.min(radius, maxRadius);
 
-            for (var j = pos - effectiveRadius; j <= pos + effectiveRadius; j++) {
-                var k = j;
+                for (var j = pos - effectiveRadius; j <= pos + effectiveRadius; j++) {
+                    var k = j;
 
-                if (j < 0 || j >= dimensionLength) {
-                    if (wrap) k = mod(j, dimensionLength);
-                    else continue;
+                    if (j < 0 || j >= dimensionLength) {
+                        if (wrap) k = mod(j, dimensionLength);
+                        else continue;
+                    }
+
+                    var expansion = _.clone(neighbor);
+                    expansion.unshift(k);
+                    expansions.push(expansion);
                 }
 
-                var expansion = _.clone(neighbor);
-                expansion.unshift(k);
-                expansions.push(expansion);
-            }
-
-            return expansions;
+                return expansions;
+            };
         };
-    };
 
     for (var i = dimensions.length - 1; i >= 0; i--) {
         neighbors = _.map(neighbors, expand(point[i], dimensions[i]));
